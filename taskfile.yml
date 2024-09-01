@@ -1,0 +1,25 @@
+version: "3"
+
+dotenv:
+  - ".env"
+
+tasks:
+  live-reload:
+    desc: "Run the golang project in live reload with air"
+    cmds:
+      - air
+
+  templ:
+    desc: "Run the proxy of templ for live reload"
+    cmds:
+      - templ generate --watch --proxy="http://localhost:{{.LISTEN_PORT}}" --open-browser=false
+
+  tailwind:
+    desc: "Run the proxy of tailwind for live reload"
+    cmds:
+      - pnpx tailwindcss -i ./frontend/styles/index.css -o ./frontend/public/styles.css --watch
+
+  build:
+  desc: "Build the app to an executable"
+  cmds:
+    - go build -o ./bin/app .
