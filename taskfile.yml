@@ -1,10 +1,13 @@
 version: "3"
 
+vars:
+  DSN: "{{.DB_CONNECTION}}://{{.DB_USER}}:{{.DB_PASSWORD}}@{{.DB_HOST}}:{{.DB_PORT}}/{{.DB_NAME}}?sslmode=disable"
+
 dotenv:
   - ".env"
 
 tasks:
-  live-reload:
+  dev:
     desc: "Run the golang project in live reload with air"
     cmds:
       - air
@@ -17,9 +20,25 @@ tasks:
   tailwind:
     desc: "Run the proxy of tailwind for live reload"
     cmds:
-      - pnpx tailwindcss -i ./frontend/styles/index.css -o ./frontend/public/styles.css --watch
+      - pnpx tailwindcss -i ./web/assets/css/input.css -o ./web/assets/css/styles.css --watch
 
   build:
   desc: "Build the app to an executable"
   cmds:
     - go build -o ./bin/app .
+
+  migrate:up:
+    desc: "Run database migrations"
+    cmds:
+      - migrate -path ./migrations -database {{.DSN}} -verbose up {{.CLI_ARGS}}
+    requires:
+      vars:
+        - DSN
+
+  migrate:down:
+    desc: "Rollback database migrations"
+    cmds:
+      - migrate -path ./migrations -database {{.DSN}} -verbose down {{.CLI_ARGS}}
+    requires:
+      vars:
+        - DSN

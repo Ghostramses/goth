@@ -1,0 +1,10 @@
+package layouts
+
+import "go-templ-htmx/web/components"
+
+templ Base() {
+	@root() {
+		@components.Navigation()
+		{ children... }
+	}
+}

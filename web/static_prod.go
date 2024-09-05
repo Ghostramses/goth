@@ -1,7 +1,7 @@
 //go:build !dev
 // +build !dev
 
-package main
+package web
 
 import (
 	"embed"
@@ -9,9 +9,9 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-//go:embed frontend/public/*
+//go:embed assets/*
 var publicFs embed.FS
 
-func servePublic(app *echo.Echo) {
+func ServePublic(app *echo.Echo) {
 	app.StaticFS("/public", publicFs)
 }

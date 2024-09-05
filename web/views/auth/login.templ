@@ -1,0 +1,23 @@
+package auth
+
+import "go-templ-htmx/web/layouts"
+
+templ Login() {
+	@layouts.Auth() {
+		<div class="w-screen h-screen flex items-center justify-center">
+			<div class="p-4 border shadow-lg rounded-lg">
+				<form class="flex flex-col gap-1">
+					<label for="user">Usuario:</label>
+					<input id="user" type="text" placeholder="Ej. 33120" class="border p-2 rounded-lg"/>
+					<label for="password">Contraseña:</label>
+					<div class="relative">
+						<input id="password" type="password" class="border p-2 rounded-lg"/>
+						<button class="absolute right-2 top-3 rounded-full hover:bg-slate-200">
+							<i class="far fa-eye w-4 h-4"></i>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	}
+}

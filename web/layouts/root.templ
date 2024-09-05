@@ -1,8 +1,6 @@
 package layouts
 
-import "go-templ-htmx/frontend/components"
-
-templ Base() {
+templ root() {
 	<!DOCTYPE html>
 	<html lang="en">
 		<head>
@@ -12,12 +10,11 @@ templ Base() {
 			<style>[x-cloak]{display:none}</style>
 			<!-- Include the Alpine library on your page -->
 			<script src="https://unpkg.com/alpinejs" defer></script>
-			<link rel="stylesheet" href="/public/styles.css"/>
-			<script src="https://unpkg.com/htmx.org@2.0.2" integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ" crossorigin="anonymous" defer></script>
 			<script src="https://kit.fontawesome.com/3093a813aa.js" crossorigin="anonymous"></script>
+			<link rel="stylesheet" href="/public/css/styles.css"/>
+			<script src="https://unpkg.com/htmx.org@2.0.2" integrity="sha384-Y7hw+L/jvKeWIRRkqWYfPcvVxHzVzn5REgzbawhxAuQGwX1XWe70vji+VSeHOThJ" crossorigin="anonymous" defer></script>
 		</head>
 		<body class="antialiased">
-			@components.Navigation()
 			{ children... }
 		</body>
 	</html>
